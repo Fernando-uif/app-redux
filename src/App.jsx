@@ -2,20 +2,27 @@ import { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { increment } from "./store/slices/counter/counterSlice";
+import { increment,decrement } from "./store/slices/counter/counterSlice";
+
 function App() {
-  
   const { counter } = useSelector((state) => state.counter);
-console.log(counter);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
-          <button onClick={()=> dispatch(increment())} type="button">
+          <button  type="button">
             count is: {counter}
+          </button>
+          <div>
+            <button onClick={() => dispatch(increment())} type="button">
+              Increment by 2
+            </button>
+          </div>
+          <button onClick={() => dispatch(decrement(2))} type="button">
+            Decrement
           </button>
         </p>
         <p>
