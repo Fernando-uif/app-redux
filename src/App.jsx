@@ -1,18 +1,21 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-
+import { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { increment } from "./store/slices/counter/counterSlice";
 function App() {
-  const [count, setCount] = useState(0)
-
+  
+  const { counter } = useSelector((state) => state.counter);
+console.log(counter);
+const dispatch = useDispatch();
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
+          <button onClick={()=> dispatch(increment())} type="button">
+            count is: {counter}
           </button>
         </p>
         <p>
@@ -27,7 +30,7 @@ function App() {
           >
             Learn React
           </a>
-          {' | '}
+          {" | "}
           <a
             className="App-link"
             href="https://vitejs.dev/guide/features.html"
@@ -39,7 +42,7 @@ function App() {
         </p>
       </header>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
